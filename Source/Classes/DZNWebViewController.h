@@ -59,9 +59,9 @@ typedef NS_OPTIONS(NSUInteger, DZNWebNavigationPrompt) {
 /** The web view that the controller manages. */
 @property (nonatomic, strong) DZNWebView *webView;
 /** The URL identifying the location of the content to load. */
-@property (nonatomic, readwrite, nullable) NSURL *URL;
+@property (nonatomic, copy, nullable) NSURL *URL;
 /** The URL identifying the location of the content to load. */
-@property (nonatomic, readwrite, nullable) NSURL *fileURL;
+@property (nonatomic, copy, nullable) NSURL *fileURL;
 /** The supported navigation tool bar items. Default is All. */
 @property (nonatomic, readwrite) DZNWebNavigationTools supportedWebNavigationTools;
 /** The supported actions like sharing and copy link, add to reading list, open in Safari, etc. Default is All. */
