@@ -8,13 +8,15 @@
 //  Licence: MIT-Licence
 //
 
-#import <WebKit/WebKit.h>
+@import WebKit;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @protocol DZNNavigationDelegate;
 
 @interface DZNWebView : WKWebView
 
-@property (nonatomic, weak) id <DZNNavigationDelegate> navDelegate;
+@property (nonatomic, weak, nullable) id <DZNNavigationDelegate> navDelegate;
 
 @end
 
@@ -24,3 +26,5 @@
 - (void)webView:(DZNWebView *)webView didUpdateProgress:(CGFloat)progress;
 
 @end
+
+NS_ASSUME_NONNULL_END

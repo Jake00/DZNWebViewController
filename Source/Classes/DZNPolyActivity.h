@@ -8,7 +8,9 @@
 //  Licence: MIT-Licence
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  Types of activity kind, used for polymorphic creation.
@@ -27,7 +29,7 @@ typedef NS_OPTIONS(NSUInteger, DZNPolyActivityType) {
 @interface DZNPolyActivity : UIActivity
 
 @property (nonatomic, readonly) DZNPolyActivityType type;
-@property (nonatomic, readonly) NSURL *URL;
+@property (nonatomic, readonly, nullable) NSURL *URL;
 
 /**
  Initializes and returns a newly created activity with a specific type.
@@ -46,3 +48,5 @@ typedef NS_OPTIONS(NSUInteger, DZNPolyActivityType) {
 + (instancetype)activityWithType:(DZNPolyActivityType)type;
 
 @end
+
+NS_ASSUME_NONNULL_END

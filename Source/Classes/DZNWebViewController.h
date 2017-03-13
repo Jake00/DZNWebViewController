@@ -8,10 +8,12 @@
 //  Licence: MIT-Licence
 //
 
-#import <UIKit/UIKit.h>
-#import <WebKit/WebKit.h>
+@import UIKit;
+@import WebKit;
 
 #import "DZNWebView.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  Types of supported navigation tools.
@@ -57,9 +59,9 @@ typedef NS_OPTIONS(NSUInteger, DZNWebNavigationPrompt) {
 /** The web view that the controller manages. */
 @property (nonatomic, strong) DZNWebView *webView;
 /** The URL identifying the location of the content to load. */
-@property (nonatomic, readwrite) NSURL *URL;
+@property (nonatomic, readwrite, nullable) NSURL *URL;
 /** The URL identifying the location of the content to load. */
-@property (nonatomic, readwrite) NSURL *fileURL;
+@property (nonatomic, readwrite, nullable) NSURL *fileURL;
 /** The supported navigation tool bar items. Default is All. */
 @property (nonatomic, readwrite) DZNWebNavigationTools supportedWebNavigationTools;
 /** The supported actions like sharing and copy link, add to reading list, open in Safari, etc. Default is All. */
@@ -108,22 +110,22 @@ typedef NS_OPTIONS(NSUInteger, DZNWebNavigationPrompt) {
  @param URL The HTTP or file URL to be requested.
  @param baseURL A URL that is used to resolve relative URLs within the document.
  */
-- (void)loadURL:(NSURL *)URL baseURL:(NSURL *)baseURL;
+- (void)loadURL:(NSURL *)URL baseURL:(nullable NSURL *)baseURL;
 
 ///------------------------------------------------
 /// @name Appearance customisation
 ///------------------------------------------------
 
 // The back button displayed on the tool bar (requieres DZNWebNavigationToolBackward)
-@property (nonatomic, strong) UIImage *backwardButtonImage;
+@property (nonatomic, strong, null_resettable) UIImage *backwardButtonImage;
 // The forward button displayed on the tool bar (requieres DZNWebNavigationToolForward)
-@property (nonatomic, strong) UIImage *forwardButtonImage;
+@property (nonatomic, strong, null_resettable) UIImage *forwardButtonImage;
 // The stop button displayed on the tool bar (requieres DZNWebNavigationToolStopReload)
-@property (nonatomic, strong) UIImage *stopButtonImage;
+@property (nonatomic, strong, null_resettable) UIImage *stopButtonImage;
 // The reload button displayed on the tool bar (requieres DZNWebNavigationToolStopReload)
-@property (nonatomic, strong) UIImage *reloadButtonImage;
+@property (nonatomic, strong, null_resettable) UIImage *reloadButtonImage;
 // The action button displayed on the navigation bar (requieres at least 1 DZNsupportedWebActions value)
-@property (nonatomic, strong) UIImage *actionButtonImage;
+@property (nonatomic, strong, null_resettable) UIImage *actionButtonImage;
 
 
 ///------------------------------------------------
@@ -138,7 +140,7 @@ typedef NS_OPTIONS(NSUInteger, DZNWebNavigationPrompt) {
 - (void)webView:(DZNWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error NS_REQUIRES_SUPER;
 
 // WKUIDelegate
-- (DZNWebView *)webView:(DZNWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures NS_REQUIRES_SUPER;
+- (nullable DZNWebView *)webView:(DZNWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures NS_REQUIRES_SUPER;
 
 // UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView NS_REQUIRES_SUPER;
@@ -150,3 +152,5 @@ typedef NS_OPTIONS(NSUInteger, DZNWebNavigationPrompt) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath NS_REQUIRES_SUPER;
 
 @end
+
+NS_ASSUME_NONNULL_END
